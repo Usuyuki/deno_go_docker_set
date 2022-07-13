@@ -1,0 +1,18 @@
+# @format
+
+📖frontend:
+  - frontend/*
+⚙backend:
+  - backend/*
+⚡infra:
+  - docker-compose.yml
+  - infra/*
+✈ci:
+  - .github/workflows/*
+  - .github/labeler.yml
+📄docs:
+  - README.md
+  - memo.md
+  - LICENSE
+# ⚙config:
+# 🧪tests:

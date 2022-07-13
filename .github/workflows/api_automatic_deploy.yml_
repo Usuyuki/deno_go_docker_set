@@ -1,0 +1,25 @@
+name: API鯖への自動デプロイ
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.API_HOST }}
+          username: ${{ secrets.API_USERNAME }}
+          key: ${{ secrets.API_SSH_KEY }}
+          port: ${{ secrets.API_PORT }}
+          script: |
+            cd ${{ secrets.API_DIR }}
+            git pull origin main
+            cd backend
+            ${{ secrets.GO_EX_PATH }} install

@@ -1,0 +1,48 @@
+version: "3"
+services:
+  go:
+    build:
+      context: .
+      dockerfile: ./infra/go/Dockerfile
+    volumes:
+      - ./backend:/backend
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    ports:
+      - 8080:8080
+
+  deno:
+    build:
+      context: .
+      dockerfile: ./infra/deno/Dockerfile
+    volumes:
+      - ./frontend:/frontend
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+    ports:
+      - 8000:8000
+
+  mysql:
+    build: ./infra/mysql
+    environment:
+      TZ: Asia/Tokyo
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: backend
+    ports:
+      - 13306:3306
+    volumes:
+      - mysql_volume:/var/lib/mysql
+
+  nginx:
+    build: ./infra/nginx
+    ports:
+      - "80:80"
+      - "81:81"
+    depends_on:
+      - "go"
+      - "deno"
+
+volumes:
+  mysql_volume:
