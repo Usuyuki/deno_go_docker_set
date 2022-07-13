@@ -1,16 +1,19 @@
 # deno_go_docker_set
 
-Deno のフレームワーク Fresh + Go のフレームワーク gin のセットで構成する Docker です。  
+Deno のフレームワーク Fresh + Go のフレームワーク Gin のセットで構成する Docker です。  
 この世界に存在しない雰囲気だったので作りました。
 
 Nginx でプロキシして、
 
 フロントエンド  
-http://localhost
+http://localhost  
 バックエンド  
 http://localhost:81
 
-で公開します。
+で動作します。  
+
+フロントエンドもバックエンドも再読み込みで更新できます。(バックエンドはair使って対処しています)  
+Fresh及びGinのエラーログなどはDocker Desktopから見れます。
 
 # 初期手順
 
@@ -20,7 +23,7 @@ http://localhost:81
 make init
 ```
 
-y,N 聞かれたら y で(echo y などで自動化できなかった……)  
+y,N 聞かれたら y でEnterを。(echo y などで自動化できなかった……)  
 しばしお待ち下さい。
 
 Go 関連のファイルは初回立ち上げに必要なためコピーして持ってきています。  
