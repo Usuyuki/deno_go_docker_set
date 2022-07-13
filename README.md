@@ -1,4 +1,4 @@
-# deno_go_docker_set
+# fresh_gin_docker_set
 
 Deno のフレームワーク Fresh + Go のフレームワーク Gin のセットで構成する Docker です。  
 この世界に存在しない雰囲気だったので作りました。
